@@ -35,7 +35,7 @@ namespace day2
                     return (letter == first && letter != secon) || (letter != first && letter == secon) ;
                 }
         }
-       
+
     }
 
     class Program
