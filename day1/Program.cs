@@ -215,7 +215,7 @@ namespace day1
             var sortedList = data.OrderBy(o => o).ToArray();
             int start = 0, end = sortedList.Count() - 1, numberToFind = 2020;
             bool found = false;
-
+            "".Substring("".IndexOf("-"))
             while (!found)
             {
                 if (sortedList[start] + sortedList[end] == numberToFind)
