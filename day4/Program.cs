@@ -12,38 +12,13 @@ namespace day4
         static void Main(string[] args)
         {
             var data = File.ReadAllText(@"D:\Crap\adventofcode2020\day4\data.txt");
-            var rows = SplitOnEmptyLine(data).ToList();
+            var rows = data.Split(Environment.NewLine + Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
 
-            var passPorts = rows.Select(r => new Passport(r));
+            var passPorts = rows.Select(r => new Passport(r.Replace(Environment.NewLine, " ")));
 
             var validPassPorts = passPorts.Where(p => p.IsValid).Count();
 
             System.Console.WriteLine($"Of {passPorts.Count()} passports {validPassPorts} is valid");
-        }
-
-
-        public static IEnumerable<string> SplitOnEmptyLine(string data)
-        {
-            var rows = data.Split(Environment.NewLine);
-            List<string> myData = new List<string>();
-
-            string response = string.Empty;
-
-            foreach (var row in rows)
-            {
-                if (string.IsNullOrEmpty(row))
-                {
-                    myData.Add(response + "");
-                    response = string.Empty;
-                }
-                else
-                {
-                    response = response + " " + row;
-                }
-            }
-
-            myData.Add(response + "");
-            return myData;
         }
     }
 
@@ -153,7 +128,7 @@ namespace day4
                     return false;
                 }
 
-                if (!Regex.IsMatch(this.HairColor, "^#[0-9a-f]{6}"))
+                if (!Regex.IsMatch(this.HairColor, "^#[0-9a-f]{6}$"))
                 {
                     return false;
                 }
@@ -168,13 +143,6 @@ namespace day4
                 {
                     return false;
                 }
-
-                if (!Regex.IsMatch("000000000", "^[0-9]{9}$"))
-                {
-                    return false;
-                }
-
-
 
                 if (!Regex.IsMatch(this.PassportId, "^[0-9]{9}$"))
                 {
