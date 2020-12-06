@@ -16,11 +16,22 @@ namespace day6
             var groupsAnsersSum = groups.Select(d => d.Replace(Environment.NewLine, string.Empty).Distinct().Count()).Sum();
 
             System.Console.WriteLine($"Number of question {groupsAnsersSum}");
-
+            
+            int result = 0;
             foreach (var group in groups)
             {
-                  
+                var letters = group.Replace(Environment.NewLine, string.Empty).Distinct();
+
+                foreach (var letter in letters)
+                {
+                   if (group.Split(Environment.NewLine).All(d => d.Contains(letter)))
+                   {
+                       result++;
+                   }
+                }
             }
+
+            System.Console.WriteLine($"Result {result}");
         }
     }
 }

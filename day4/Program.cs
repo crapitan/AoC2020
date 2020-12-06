@@ -111,16 +111,21 @@ namespace day4
                 if (!(this.ExpirationYear.Length == 4 && int.TryParse(this.ExpirationYear, out int expyear) && expyear >= 2020 && expyear <= 2030))
                     return false;
 
-                if (this.Height.Contains("cm"))
+                if (this.Height.EndsWith("cm"))
                 {
                     if (!(int.TryParse(this.Height.Replace("cm", string.Empty), out int heightcm) && heightcm >= 150 && heightcm <= 193))
                         return false;
                 }
 
-                if (this.Height.Contains("in"))
+                if (this.Height.EndsWith("in"))
                 {
                     if (!(int.TryParse(this.Height.Replace("in", string.Empty), out int heightin) && heightin >= 59 && heightin <= 76))
                         return false;
+                }
+
+                if (!(this.Height.EndsWith("cm") || this.Height.EndsWith("in")))
+                {
+                    return false;
                 }
 
                 if (this.HairColor.Length != 7)
